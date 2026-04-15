@@ -109,7 +109,7 @@ select_option:
 .check_if_deafult_dir_opt:
     cmpl $CMP_EQUALS, %eax
     jne .check_if_read_record_opt
-    # TODO: Call the corespoding function here.  
+    call default_dir_action
     jmp .finished_select_option 
 
 .check_if_read_record_opt:
@@ -117,7 +117,7 @@ select_option:
     call strcmp
     cmpl $CMP_EQUALS, %eax
     jne .check_if_write_record_opt
-    # TODO: Call the coresponding function here.
+    call read_record_action
     jmp .finished_select_option
 
 .check_if_write_record_opt:
@@ -125,15 +125,15 @@ select_option:
     call strcmp 
     cmpl $CMP_EQUALS, %eax
     jne .check_if_remove_record_opt
-    # TODO: Call the corespoding function here. 
+    call write_record_action
     jmp .finished_select_option
 
 .check_if_remove_record_opt:
     movl $.remove_record_opt, %edi
     call strcmp 
     cmpl $CMP_EQUALS, %eax 
-    jne .check_if_show_records_opt 
-    # TODO: Call the coresponding function here. 
+    jne .check_if_show_records_opt
+    call remove_record_action
     jmp .finished_select_option 
 
 .check_if_show_records_opt: 
@@ -141,7 +141,7 @@ select_option:
     call strcmp 
     cmpl $CMP_EQUALS, %eax
     jne .help_opt 
-    # TODO: Call the coresponding function here.
+    call show_records_action
     jmp .finished_select_option
 
 .help_opt:
