@@ -36,7 +36,7 @@ main:
     pushq %rbp
     movq %rsp, %rbp
 
-    cmpl $3, %edi # Check if the argc == 1.
+    cmpl $3, %edi # Check if the argc == 3.
     jne .no_arguments_err
 
     call select_option
